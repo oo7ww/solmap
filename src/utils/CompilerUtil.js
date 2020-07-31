@@ -1,6 +1,6 @@
 // NOTE: BrowserSolc is not used as a regular npm dependency.
 // Instead, it is included as a global variable injected from a script in index.html.
-
+const solc = require('solc');
 const compilerVersion = 'soljson-v0.4.24+commit.e67f0147.js';
 
 const CompilerUtil = {
@@ -20,7 +20,8 @@ const CompilerUtil = {
       // console.log(`  INPUT: `, json);
       let output; 
       try {
-        output = CompilerUtil.compiler.compileStandardWrapper(json);
+        output = solc.compile(json);
+        //output = CompilerUtil.compiler.compileStandardWrapper(json);
       }
       catch(err) {
         reject(err);
